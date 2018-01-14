@@ -20,7 +20,7 @@ public class JDBCMySQLConnection implements DAOConnection {
 		
 		String path = ContextServlet.context.getRealPath(File.separator);
 		System.out.println(path);
-		config = ResourceBundle.getBundle(path + "src/main/java/res/dbconfig");
+		config = ResourceBundle.getBundle(path + "/src/main/java/res/dbconfig");
 	}
 	
 	public static JDBCMySQLConnection getInstance() {
