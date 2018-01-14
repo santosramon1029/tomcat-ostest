@@ -17,7 +17,7 @@ public class JDBCMySQLConnection implements DAOConnection {
 	private static JDBCMySQLConnection instance;
 	
 	private JDBCMySQLConnection() {
-		config = ResourceBundle.getBundle(ContextServlet.context.getRealPath("res/dbconfig"));
+		//config = ResourceBundle.getBundle(ContextServlet.context.getRealPath("res/dbconfig"));
 	}
 	
 	public static JDBCMySQLConnection getInstance() {
@@ -35,10 +35,10 @@ public class JDBCMySQLConnection implements DAOConnection {
 	@Override
 	public Connection getConnection() throws PersistenceException{
 		try {
-			Class.forName(config.getString("br.com.stm.db.databaseClass"));
-			this.conn = DriverManager.getConnection(config.getString("br.com.stm.db.connectionUrl"),
-								config.getString("br.com.stm.db.user"),
-								config.getString("br.com.stm.db.password"));
+			Class.forName(config.getString("com.mysql.jdbc.Driver"));
+			this.conn = DriverManager.getConnection(config.getString("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10215657"),
+								config.getString("sql10215657"),
+								config.getString("n1QtUp7F11"));
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
