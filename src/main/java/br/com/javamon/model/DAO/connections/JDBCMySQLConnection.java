@@ -1,6 +1,7 @@
 package br.com.javamon.model.DAO.connections;
 
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class JDBCMySQLConnection implements DAOConnection {
 	private static JDBCMySQLConnection instance;
 	
 	private JDBCMySQLConnection() {
-		config = ResourceBundle.getBundle("res/dbconfig");
+		config = ResourceBundle.getBundle("br.com.javamon.model.DAO.connections.dbconfig");
 	}
 	
 	public static JDBCMySQLConnection getInstance() {
