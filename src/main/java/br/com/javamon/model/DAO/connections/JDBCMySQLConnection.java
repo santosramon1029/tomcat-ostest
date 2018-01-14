@@ -35,10 +35,10 @@ public class JDBCMySQLConnection implements DAOConnection {
 	@Override
 	public Connection getConnection() throws PersistenceException{
 		try {
-			Class.forName(config.getString("com.mysql.jdbc.Driver"));
-			this.conn = DriverManager.getConnection(config.getString("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10215657"),
-								config.getString("sql10215657"),
-								config.getString("n1QtUp7F11"));
+			Class.forName("com.mysql.jdbc.Driver");
+			this.conn = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10215657",
+								"sql10215657",
+								"n1QtUp7F11");
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
