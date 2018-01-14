@@ -1,0 +1,4 @@
+br.com.stm.db.databaseClass=com.mysql.jdbc.Driver
+br.com.stm.db.connectionUrl=jdbc:mysql://sql10.freemysqlhosting.net:3306/sql102156
+user=sql10215657
+password=n1QtUp7F11
