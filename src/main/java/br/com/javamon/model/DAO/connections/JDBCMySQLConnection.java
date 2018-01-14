@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import br.com.javamon.model.exceptions.PersistenceException;
+import br.com.javamon.resources.ContextServlet;
 
 public class JDBCMySQLConnection implements DAOConnection {
 
@@ -16,7 +17,10 @@ public class JDBCMySQLConnection implements DAOConnection {
 	private static JDBCMySQLConnection instance;
 	
 	private JDBCMySQLConnection() {
-		config = ResourceBundle.getBundle("br.com.javamon.model.DAO.connections.dbconfig");
+		
+		String path = ContextServlet.context.getRealPath(File.separator);
+		System.out.println(path);
+		config = ResourceBundle.getBundle(path + "src/main/java/res/dbconfig");
 	}
 	
 	public static JDBCMySQLConnection getInstance() {
@@ -48,7 +52,9 @@ public class JDBCMySQLConnection implements DAOConnection {
 	}
 
 	
-	
+	public static void main(String[] args) throws Exception{
+		JDBCMySQLConnection.getInstance();
+	}
 	
 	
 }

@@ -24,18 +24,14 @@
 		<servlet-name>restful</servlet-name>
 		<url-pattern>/webapi/*</url-pattern>
 	</servlet-mapping>
-
-
-
+	
+	
 	<servlet>
-		<servlet-name>MainServlet</servlet-name>
-		<servlet-class>servlet.MainServlet</servlet-class>
+		<servlet-name>ContextServlet</servlet-name>
+		<servlet-class>br.com.javamon.resources.ContextServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>MainServlet</servlet-name>
-		<url-pattern>/main</url-pattern>
-	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
