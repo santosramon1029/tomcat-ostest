@@ -2,9 +2,13 @@ package br.com.javamon.model.DAO.connections;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import br.com.javamon.model.exceptions.PersistenceException;
@@ -13,11 +17,10 @@ import br.com.javamon.resources.ContextServlet;
 public class JDBCMySQLConnection implements DAOConnection {
 
 	private Connection conn = null;
-	private ResourceBundle config = null;
+	private Properties config = null;
 	private static JDBCMySQLConnection instance;
 	
 	private JDBCMySQLConnection() {
-		//config = ResourceBundle.getBundle(ContextServlet.context.getRealPath("res/dbconfig"));
 	}
 	
 	public static JDBCMySQLConnection getInstance() {
@@ -35,12 +38,14 @@ public class JDBCMySQLConnection implements DAOConnection {
 	@Override
 	public Connection getConnection() throws PersistenceException{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			this.conn = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10215657",
-								"sql10215657",
-								"n1QtUp7F11");
+			config = new Properties();
+			String applicationContextPath = ContextServlet.context.getRealPath("WEB-INF/mysql-db-config.properties");
+			config.load(new FileInputStream( new File(applicationContextPath) ) );
+			Class.forName(config.getProperty("br.com.stm.db.databaseClass"));
+			this.conn = DriverManager.getConnection(config.getProperty("br.com.stm.db.connectionUrl"),
+								config);
 			
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | IOException | SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceException(e, "error trying to connect to the mysql database: " + e.getMessage());
 		}
